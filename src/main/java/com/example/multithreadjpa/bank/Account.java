@@ -19,6 +19,8 @@ public class Account {
 
     private long balance;
 
+    @Version
+    private Integer version;
 
     public Account(String name) {
         this.name = name;
