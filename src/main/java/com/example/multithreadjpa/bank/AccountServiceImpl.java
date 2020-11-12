@@ -12,14 +12,27 @@ public class AccountServiceImpl implements AccountService {
 
 
     @Transactional
-    public void deposit(long accountId, long amount) {
+    public void deposit2(long accountId, long amount, String changeName) {
         Account account = accountRepository.findByAccountId(accountId);
         long currBalance = account.getBalance();
-        System.out.println("thread = " + Thread.currentThread().getName() + ", " + "currBalance = " + currBalance);
-        account.setBalance(currBalance + amount);
-        System.out.println("thread = " + Thread.currentThread().getName() + ", " + "currBalance = " + (currBalance + amount));
+        System.out.println("thread = " + Thread.currentThread().getName() + ", " + "currBalance = " + currBalance + "currName = "+account.getName());
+        account.setName(changeName);
+//        account.setBalance(currBalance + amount);
+        accountRepository.bulkCount(amount, accountId);
+        System.out.println("thread = " + Thread.currentThread().getName() + ", " + "currBalance = " + (currBalance + amount) + "currName = testName");
         accountRepository.save(account);
     }
 
+    @Transactional
+    public void deposit(long accountId, long amount, String changeName) {
+        Account account = accountRepository.findByAccountId(accountId);
+        long currBalance = account.getBalance();
+        System.out.println("thread = " + Thread.currentThread().getName() + ", " + "currBalance = " + currBalance + "currName = "+account.getName());
+        account.setName(changeName);
+//        account.setBalance(currBalance + amount);
+        accountRepository.bulkCount(amount, accountId);
+        System.out.println("thread = " + Thread.currentThread().getName() + ", " + "currBalance = " + (currBalance + amount) + "currName = testName");
+        accountRepository.save(account);
+    }
 
 }

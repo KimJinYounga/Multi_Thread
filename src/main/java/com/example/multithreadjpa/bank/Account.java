@@ -1,6 +1,7 @@
 package com.example.multithreadjpa.bank;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OptimisticLocking;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @Entity(name = "account")
 @NoArgsConstructor
+@DynamicUpdate
 public class Account {
 
     @Id
@@ -19,8 +21,8 @@ public class Account {
 
     private long balance;
 
-    @Version
-    private Integer version;
+//    @Version // lock 걸때 사용됨.
+//    private Integer version;
 
     public Account(String name) {
         this.name = name;

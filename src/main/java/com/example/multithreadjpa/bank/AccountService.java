@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AccountService {
 
     @Transactional
-    public void deposit(long accountId, long amount);
+    public void deposit(long accountId, long amount, String changeName);
 
-//    @Transactional
-//    public Account findById(long accountId);
 }
